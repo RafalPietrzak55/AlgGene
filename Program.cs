@@ -5,6 +5,20 @@ using System.Runtime.InteropServices;
 
 class GeneticAlgorithm
 {
+    class Program
+    {
+        
+        
+      
+
+           Random random = new Random();
+
+            const int PopulationSize = 9;
+            const int ChromosomeBits = 3;
+            const int Iterations = 20;
+            const int Tournaments = 2;
+            const double MinValue = 0.0;
+            const double MaxValue = 100.0;    
     static Random random = new Random();
     const int PopulationSize = 9;
     const int ChromosomeBits = 3;
@@ -13,38 +27,7 @@ class GeneticAlgorithm
     const double MinValue = 0.0;
     const double MaxValue = 100.0;
 
-    static void Main(string[] args)
-    {
-<<<<<<< HEAD
-        List<int[]> population = InitializePopulation();
 
-        for (int iteration = 0; iteration <= Iterations; iteration++)
-        {
-            var fitnessValues = population.Select(DecodeAndEvaluate).ToList();
-            double bestFitness = fitnessValues.Max();
-            double averageFitness = fitnessValues.Average();
-            Console.WriteLine($"Iteracja {iteration}: Najlepsza: {bestFitness:F4}, Średnia: {averageFitness:F4}");
-=======
-        
-        
-      
->>>>>>> dac8696930e02caf5f5c1bae4678ded3d4deddc9
-
-            if (iteration == Iterations) break;
-
-            List<int[]> newPopulation = new List<int[]>();
-
-            while (newPopulation.Count < PopulationSize - 1)
-            {
-                int[] parent = TournamentSelection(population, fitnessValues);
-                int[] mutatedChild = Mutate(parent);
-                newPopulation.Add(mutatedChild);
-            }
-
-<<<<<<< HEAD
-            int bestIndex = fitnessValues.IndexOf(bestFitness);
-            newPopulation.Add(population[bestIndex]);
-=======
        
 
         static void Main(string[] args)
@@ -62,6 +45,9 @@ class GeneticAlgorithm
                 double averageFitness = fitnessValues.Average();
 
                 Console.WriteLine($"Iteracja {iteration}: Najlepsza = {bestFitness}, Srednia = {averageFitness}");
+    static void Main(string[] args)
+    {
+        List<int[]> population = InitializePopulation();
 
                 if (iteration == Iterations) break;
 
@@ -71,8 +57,30 @@ class GeneticAlgorithm
 
 
             }
+        for (int iteration = 0; iteration <= Iterations; iteration++)
+        {
+            var fitnessValues = population.Select(DecodeAndEvaluate).ToList();
+            double bestFitness = fitnessValues.Max();
+            double averageFitness = fitnessValues.Average();
+            Console.WriteLine($"Iteracja {iteration}: Najlepsza: {bestFitness:F4}, Średnia: {averageFitness:F4}");
 
+            if (iteration == Iterations) break;
 
+            List<int[]> newPopulation = new List<int[]>();
+
+            while (newPopulation.Count < PopulationSize - 1)
+            {
+                int[] parent = TournamentSelection(population, fitnessValues);
+                int[] mutatedChild = Mutate(parent);
+                newPopulation.Add(mutatedChild);
+            }
+
+            int bestIndex = fitnessValues.IndexOf(bestFitness);
+            newPopulation.Add(population[bestIndex]);
+
+            population = newPopulation;
+        }
+    }
 
             static List<int> InitializePopulation()
             {
@@ -130,19 +138,6 @@ class GeneticAlgorithm
 
 
 
-
-        }
-
-
-
-            
->>>>>>> dac8696930e02caf5f5c1bae4678ded3d4deddc9
-
-            population = newPopulation;
-        }
-    }
-
-<<<<<<< HEAD
     static List<int[]> InitializePopulation()
     {
         List<int[]> population = new List<int[]>();
@@ -156,6 +151,14 @@ class GeneticAlgorithm
         return population;
     }
 
+        }
+
+
+
+            
+
+        }
+    }
     static double DecodeAndEvaluate(int[] chromosome)
     {
         double x1 = Decode(chromosome.Take(ChromosomeBits).ToArray());
@@ -190,6 +193,7 @@ class GeneticAlgorithm
         return population[bestIndex];
     }
 
+
     static int[] Mutate(int[] chromosome)
     {
         int[] mutatedChromosome = (int[])chromosome.Clone();
@@ -198,8 +202,3 @@ class GeneticAlgorithm
         return mutatedChromosome;
     }
 }
-=======
-
-
-
->>>>>>> dac8696930e02caf5f5c1bae4678ded3d4deddc9
