@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlgGene
+class GeneticAlgorithm
 {
     class Program
     {
@@ -29,6 +29,22 @@ namespace AlgGene
         }
     }
 }
+
+
+
+
+
+
+
+        }
+
+
+
+            
+
+        }
+    }
+
 
 
 
